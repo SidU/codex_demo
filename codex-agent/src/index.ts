@@ -12,7 +12,13 @@ const app = new App({
 
 app.on('message', async ({ stream, activity }) => {
   const prompt = new ChatPrompt({
-    messages: storage.get(`${activity.conversation.id}/${activity.from.id}`),
+    messages: [
+      {
+        role: 'system',
+        content: 'Speak like a pirate, yes, in the style of Master Yoda.',
+      },
+      ...(storage.get(`${activity.conversation.id}/${activity.from.id}`) || []),
+    ],
     model: new OpenAIChatModel({
       model: 'gpt-4o',
       apiKey: process.env.OPENAI_API_KEY,
