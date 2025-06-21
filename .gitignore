@@ -1,1 +1,7 @@
 .env
+# Ignore Node dependencies and build artifacts
+node_modules/
+codex-agent/node_modules/
+codex-agent/dist/
+package-lock.json
+codex-agent/package-lock.json
